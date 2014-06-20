@@ -1,6 +1,6 @@
 {
   "name": "tcp-spy",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "TCP Proxy server for debugging.",
   "main": "index.js",
   "dependencies": {
