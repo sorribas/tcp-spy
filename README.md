@@ -1,6 +1,8 @@
 tcp spy
 =======
 
+[![build status](https://secure.travis-ci.org/sorribas/tcp-spy.png)](http://travis-ci.org/sorribas/tcp-spy)
+
 TCP Proxy server for debugging purposes.
 
 CLI
