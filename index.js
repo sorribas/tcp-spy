@@ -11,10 +11,8 @@ var server = function(opts, callback) {
   var clientStream = new stream.PassThrough();
 
   var s = net.createServer(function(client) {
-    var server = net.connect({port:forwardPort, host: forwardHost}, function() {
-      client.pipe(server).pipe(client);
-    });
-
+    var server = net.connect({port:forwardPort, host: forwardHost});
+    client.pipe(server).pipe(client);
     client.pipe(clientStream, {end: false});
     server.pipe(serverStream, {end: false});
   });
