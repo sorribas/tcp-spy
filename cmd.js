@@ -24,7 +24,7 @@ var prefixer = function(prefix) {
  
 var formatStream = function(prefix) {
   var width = 0;
-  var max = process.stdout.columns-20;
+  var max = process.stdout.columns-25;
  
   return through(function(chunk, enc, callback) {
     var lines = [];
@@ -77,8 +77,19 @@ if (typeof forwardPort === 'string' && forwardPort.indexOf(':') !== -1) {
   forwardPort = f[1];
 }
  
+var connId = 0;
 var spy = tcpSpy({port: port, forwardPort: forwardPort, forwardHost: host});
 var transform = argv.x || argv.hex ? hexStream : through
- 
-spy.client.pipe(transform()).pipe(formatStream(prefixer(chalk.bold(chalk.magenta('-->'))))).pipe(process.stdout);
-spy.server.pipe(transform()).pipe(formatStream(prefixer(chalk.bold(chalk.cyan('<--'))))).pipe(process.stdout);
+spy.on('connection', function(client, server) {
+  var id = ++connId;
+  id = '00'.slice(id.toString().length) + id;
+  console.log(id + '  ' + chalk.green('***') + chalk.yellow('  New connection established'));
+  client.pipe(transform()).pipe(formatStream(prefixer(id + '  ' + chalk.bold(chalk.magenta('-->'))))).pipe(process.stdout);
+  server.pipe(transform()).pipe(formatStream(prefixer(id + '  ' + chalk.bold(chalk.cyan('<--'))))).pipe(process.stdout);
+
+  client.on('end', function() {
+    console.log(id + '  ' + chalk.green('***') + chalk.yellow('  Connection finished'));
+  });
+});
+
+process.stdout.setMaxListeners(0);

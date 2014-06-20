@@ -50,8 +50,10 @@ var spy = tcpSpy({
   forwardPort: 25
 });
 
-spy.client.pipe(process.stdout);
-spy.server.pipe(process.stdout);
+spy.on('connection', function(client, server) {
+  client.pipe(process.stdout);
+  server.pipe(process.stdout);
+});
 ```
 
 License

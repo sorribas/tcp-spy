@@ -1,5 +1,6 @@
 var net = require('net');
 var stream = require('stream');
+var EventEmitter = require('events').EventEmitter;
 
 var server = function(opts, callback) {
   opts = opts || {};
@@ -7,22 +8,23 @@ var server = function(opts, callback) {
   var forwardPort = opts.forwardPort;
   var forwardHost = opts.forwardHost || 'localhost';
 
-  var serverStream = new stream.PassThrough();
-  var clientStream = new stream.PassThrough();
-
   var s = net.createServer(function(client) {
     var server = net.connect({port:forwardPort, host: forwardHost});
+    var serverStream = new stream.PassThrough();
+    var clientStream = new stream.PassThrough();
+
     client.pipe(server).pipe(client);
-    client.pipe(clientStream, {end: false});
-    server.pipe(serverStream, {end: false});
+    client.pipe(clientStream);
+    server.pipe(serverStream);
+
+    em.emit('connection', clientStream, serverStream);
   });
 
   s.listen(port, callback);
 
-  return {
-    client: clientStream,
-    server: serverStream
-  };
+  var em = new EventEmitter();
+
+  return em;
 };
 
 module.exports = server;
