@@ -1,7 +1,7 @@
 var net = require('net');
 var stream = require('stream');
 
-var server = function(opts) {
+var server = function(opts, callback) {
   opts = opts || {};
   var port = opts.port;
   var forwardPort = opts.forwardPort;
@@ -19,7 +19,7 @@ var server = function(opts) {
     server.pipe(serverStream, {end: false});
   });
 
-  s.listen(port);
+  s.listen(port, callback);
 
   return {
     client: clientStream,
