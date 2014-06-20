@@ -11,12 +11,14 @@ var tests = function() {
       });
     });
 
-    spy.client.on('data', function(data) {
-      t.equal(data.toString(), 'a', 'client');
-    });
+    spy.on('connection', function(client, server) {
+      client.on('data', function(data) {
+        t.equal(data.toString(), 'a', 'client');
+      });
 
-    spy.server.on('data', function(data) {
-      t.equal(data.toString(), 'b', 'server');
+      server.on('data', function(data) {
+        t.equal(data.toString(), 'b', 'server');
+      });
     });
   });
 
