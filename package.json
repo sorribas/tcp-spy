@@ -9,9 +9,11 @@
     "stamp-stream": "~0.1.1",
     "through2": "~0.5.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "tape": "^2.13.3"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "tape test.js"
   },
   "bin": {
     "tcp-spy": "cmd.js"
