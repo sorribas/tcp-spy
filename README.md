@@ -5,6 +5,19 @@ tcp spy
 
 TCP Proxy server for debugging purposes.
 
+Install
+-------
+
+```
+npm install tcp-spy
+```
+
+Or if you're going to use the command line tool
+
+```
+npm install tcp-spy -g
+```
+
 CLI
 ---
 
