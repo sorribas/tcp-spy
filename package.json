@@ -1,0 +1,29 @@
+{
+  "name": "tcp-spy",
+  "version": "0.0.0",
+  "description": "TCP Proxy server for debugging.",
+  "main": "index.js",
+  "dependencies": {
+    "block-stream": "~0.0.7",
+    "minimist": "~0.2.0",
+    "stamp-stream": "~0.1.1",
+    "through2": "~0.5.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "tcp-spy": "cmd.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/sorribas/tcp-spy"
+  },
+  "author": "Eduardo Sorribas <eduardo@sorribas.org> (http://sorribas.org/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sorribas/tcp-spy/issues"
+  },
+  "homepage": "https://github.com/sorribas/tcp-spy"
+}
