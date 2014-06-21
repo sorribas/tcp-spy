@@ -37,6 +37,17 @@ example
 tcp-spy 3000 localhost:25
 ```
 
+screenshots
+-----------
+
+HTTP example
+
+![](screenshot1.png)
+
+Example with the hex option
+
+![](screenshot2.png)
+
 module
 ------
 
