@@ -48,6 +48,8 @@ var formatStream = function(prefix) {
       self.push(chunk);
       if (chunk[chunk.length-1] !== 10) self.push(new Buffer([10]));
     });
+
+    width = 0;
  
     callback();
   })
