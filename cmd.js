@@ -31,7 +31,7 @@ var formatStream = function(prefix) {
     var prev = 0;
  
     for (var i = 0; i < chunk.length; i++) {
-      width++;
+      width += chunk[i] === 9 ? 8 : 1;
       if (chunk[i] === 10 || width >= max) {
         lines.push(chunk.slice(prev, i+1));
         prev = i+1;
