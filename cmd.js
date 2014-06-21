@@ -65,11 +65,13 @@ var newlineStream = function() {
 };
  
 if (argv._.length !== 2) {
-  console.log('USAGE:');
+  console.log('Usage:');
   console.log('');
-  console.log('tcp-spy PORT [FORWARD_HOST:]FORWARD_PORT [OPTIONS]');
+  console.log('  tcp-spy port [forward_host:]forward_port [options]');
   console.log('');
-  console.log('Options: -x || --hex Hexadecimal output');
+  console.log('Options:');
+  console.log('  --hex -x Hexadecimal output');
+  console.log('');
   process.exit(1);
 }
  

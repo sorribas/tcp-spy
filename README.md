@@ -24,11 +24,12 @@ CLI
 You can run the command line interface like this.
 
 ```
-USAGE:
+Usage:
 
-tcp-spy PORT [FORWARD_HOST:]FORWARD_PORT [OPTIONS]
+  tcp-spy port [forward_host:]forward_port [options]
 
-Options: -x || --hex Hexadecimal output
+Options:
+  --hex -x Hexadecimal output
 ```
 
 example
