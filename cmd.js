@@ -8,7 +8,11 @@ var argv = require('minimist')(process.argv.slice(2));
  
 var hexStream = function() {
   return through(function(chunk, enc, callback) {
-    callback(null, chunk.toString('hex'));
+    var arr = Array.prototype.slice.call(chunk).map(function(x) {
+      var str = x.toString(16);
+      return '00'.slice(str.toString().length) + str;
+    });
+    callback(null, arr.join(' '));
   });
 };
  
