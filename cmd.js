@@ -2,7 +2,6 @@
  
 var through = require('through2');
 var tcpSpy = require('./');
-var blockStream = require('block-stream');
 var chalk = require('chalk')
 var argv = require('minimist')(process.argv.slice(2));
  
