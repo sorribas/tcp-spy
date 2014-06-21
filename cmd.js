@@ -1,6 +1,5 @@
 #!/usr/bin/env node
  
-var stamp = require('stamp-stream');
 var through = require('through2');
 var tcpSpy = require('./');
 var blockStream = require('block-stream');
