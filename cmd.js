@@ -89,12 +89,12 @@ var transform = argv.x || argv.hex ? hexStream : through
 spy.on('connection', function(client, server) {
   var id = ++connId;
   id = '00'.slice(id.toString().length) + id;
-  console.log(id + '  ' + chalk.green('***') + chalk.yellow('  New connection established'));
+  console.log(id + '  ' + chalk.green('***') + chalk.yellow('  Connection established'));
   client.pipe(transform()).pipe(formatStream(prefixer(id + '  ' + chalk.bold(chalk.magenta('-->'))))).pipe(process.stdout);
   server.pipe(transform()).pipe(formatStream(prefixer(id + '  ' + chalk.bold(chalk.cyan('<--'))))).pipe(process.stdout);
 
   client.on('end', function() {
-    console.log(id + '  ' + chalk.green('***') + chalk.yellow('  Connection finished'));
+    console.log(id + '  ' + chalk.green('***') + chalk.red('  Connection finished'));
   });
 });
 
