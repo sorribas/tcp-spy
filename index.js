@@ -8,6 +8,8 @@ var server = function(opts, callback) {
   var forwardPort = opts.forwardPort;
   var forwardHost = opts.forwardHost || 'localhost';
 
+  if (port === forwardPort) throw new Error('The port and the forward port must be different.');
+
   var s = net.createServer(function(client) {
     var server = net.connect({port:forwardPort, host: forwardHost});
     var serverStream = new stream.PassThrough();
