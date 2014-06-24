@@ -29,6 +29,7 @@ Usage:
   tcp-spy port [forward_host:]forward_port [options]
 
 Options:
+
   --hex -x Hexadecimal output
 ```
 
