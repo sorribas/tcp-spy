@@ -69,6 +69,7 @@ if (argv._.length !== 2) {
   console.log('  tcp-spy port [forward_host:]forward_port [options]');
   console.log('');
   console.log('Options:');
+  console.log('');
   console.log('  --hex -x Hexadecimal output');
   console.log('');
   process.exit(1);
