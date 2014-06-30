@@ -18,6 +18,18 @@ var server = function(opts, callback) {
     client.pipe(server).pipe(client);
     client.pipe(clientStream);
     server.pipe(serverStream);
+    
+    var onclose = function() {
+      server.destroy();
+      client.destroy();
+      clientStream.end();
+      serverStream.end();
+    }
+    
+    server.on('close', onclose);
+    server.on('error', onclose);
+    client.on('close', onclose);
+    client.on('error', onclose);
 
     em.emit('connection', clientStream, serverStream);
   });
