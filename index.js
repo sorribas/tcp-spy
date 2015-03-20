@@ -1,5 +1,6 @@
 var net = require('net');
 var stream = require('stream');
+var dns = require('dns');
 var EventEmitter = require('events').EventEmitter;
 
 var server = function(opts, callback) {
@@ -7,8 +8,6 @@ var server = function(opts, callback) {
   var port = opts.port;
   var forwardPort = opts.forwardPort;
   var forwardHost = opts.forwardHost || 'localhost';
-
-  if (port === forwardPort) throw new Error('The port and the forward port must be different.');
 
   var s = net.createServer(function(client) {
     var server = net.connect({port:forwardPort, host: forwardHost});
@@ -34,7 +33,14 @@ var server = function(opts, callback) {
     em.emit('connection', clientStream, serverStream);
   });
 
-  s.listen(port, callback);
+  if (port === forwardPort) {
+    dns.lookup(forwardHost, function(_, ip) {
+      if (ip === '127.0.0.1') return em.emit('error', new Error('The port and the forward port must be different.'));
+      s.listen(port, callback);
+    });
+  } else {
+    s.listen(port, callback);
+  }
 
   var em = new EventEmitter();
 

@@ -22,6 +22,17 @@ var tests = function() {
     });
   });
 
+  test('same ports', function(t) {
+    t.plan(1);
+    var spy = tcpSpy({port: 4500, forwardPort: 4500}, function() {
+      var c = net.connect({port: 4501}, function() {
+        c.write('a');
+      });
+    });
+
+    spy.on('error', t.ok.bind(null, true));
+  });
+
   test('end', function(t) {
     t.end();
     process.exit();
