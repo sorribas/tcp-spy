@@ -7,10 +7,10 @@ var server = function(opts, callback) {
   opts = opts || {};
   var port = opts.port;
   var forwardPort = opts.forwardPort;
-  var forwardHost = opts.forwardHost || 'localhost';
+  var forwardHost = opts.forwardHost;
 
   var s = net.createServer(function(client) {
-    var server = net.connect({port:forwardPort, host: forwardHost});
+    var server = net.connect(forwardPort, forwardHost);
     var serverStream = new stream.PassThrough();
     var clientStream = new stream.PassThrough();
 
